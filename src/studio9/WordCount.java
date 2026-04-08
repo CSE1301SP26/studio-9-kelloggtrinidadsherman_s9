@@ -15,9 +15,9 @@ public class WordCount {
 	 * 
 	 * For example, if passed a List<String> containing:
 	 * 
-	 * [to, be, or, not, to, be]
+	 *  be]
 	 * 
-	 * the resulting Map<String, Integer> would contain
+	 * the resulting Map<Str[to, be, or, not, to,ing, Integer> would contain
 	 * 
 	 * key="to", value=2;
 	 * key="be", value=2;
@@ -29,9 +29,18 @@ public class WordCount {
 	 *         associated with the number of occurrences of the word
 	 */
 	public static Map<String, Integer> countWords(List<String> words) {
-
+		Map<String, Integer> wordlist = new HashMap<>();
+		for(int i=0; i<words.size();i++){
+			if(wordlist.containsKey(words.get(i))){
+			int value = wordlist.get(words.get(i));
+			wordlist.put(words.get(i), value+1);
+		}
+		else{
+			wordlist.put(words.get(i),1);
+		}
+	}
 		// FIXME
-		throw new NotYetImplementedException();
+		return wordlist;
 
 	}
 	
@@ -45,7 +54,9 @@ public class WordCount {
 		wordList.add("to");
 		wordList.add("be");
 		Map<String, Integer> words = countWords(wordList);
-		
+		for(Map.Entry<String, Integer> i:words.entrySet()){
+
+		}
 		//TODO: Write code that will iterate over the words map
 		//to verify its contents
 	}

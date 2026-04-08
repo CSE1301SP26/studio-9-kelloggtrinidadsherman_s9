@@ -10,7 +10,7 @@ public class Polynomial {
 	 * Constructs a Polynomial with no terms yet.
 	 */
 	public Polynomial() {
-		//FIXME
+		list = new LinkedList<Double>();
 	}
 
 	
@@ -20,7 +20,7 @@ public class Polynomial {
 	 * @return polynomial with added term
 	 */
 	public void addTerm(double coeff) {
-		//FIXME
+		list.add(coeff);
 	}
 	
 	/*
@@ -29,7 +29,18 @@ public class Polynomial {
 	 * Cx^N + Cx^N-1 + ... + Cx + C
 	 */
 	public String toString() {
-		return ""; //FIXME
+		int m=list.size();
+		String output="";
+		for (int i=m-1; i>0; i--){
+			if (i>=2){
+				output=output+list.get(m-i-1)+"x^"+i+" + ";
+			} else if (i==1){
+				output=output+list.get(m-2)+"x + ";
+			} else {
+				output=output+list.get(m-1);
+			}
+		}
+		return output;
 	}
 	
 	/**
@@ -38,12 +49,22 @@ public class Polynomial {
 	 * @return value of polynomial at that x
 	 */
 	public double evaluate(double x) {
-		return 0;//FIXME
+		int m=list.size();
+		double output=0;
+		for (int i=m-1; i>=0; i--){
+			output=output+(list.get(m-i-1)*Math.pow(x,i));
+		}
+		return output;
 	}
 
 	
 	public Polynomial derivative() {
-		return null;//FIXME
+		Polynomial deriv= new Polynomial();
+		int m=list.size();
+		for (int i=0; i<=m-2; i++){
+			deriv.addTerm(list.get(i)*(m-i-1));
+		}
+		return deriv;
 	}
 	
 
